@@ -6,12 +6,10 @@ describe(' titre ', () => {
         cy.get('#creditMaturity').select('M6')
         cy.contains('CONTINUER').click()
         cy.url().should('contain', '/email')
-        cy.get('#email-input').type('boussad@yopmail.com').should('have.value', 'boussad@yopmail.com')
+        cy.get('#email-input').type('toto@yopmail.com').should('have.value', 'toto@yopmail.com')
         cy.contains('Voir mon offre personnalisée').click()
         cy.url().should('contain', '/familysituation')
     })
-    
-    
     it('Situation familliale : Célibataire', () => {
         cy.get('#maritalStatus-input').select('SINGLE')
         cy.get('#childNumberPropal-input').select('0')
@@ -79,6 +77,6 @@ describe(' titre ', () => {
         cy.contains('Suite').click() 
         cy.url().should('contain', '/offers/refused_reoptin')
 
-        cy.contains('Obtenir votre financement en 1 clic').click() 
+        //cy.contains('Obtenir votre financement en 1 clic').click() 
     }) 
 })
