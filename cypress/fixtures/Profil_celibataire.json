@@ -1,0 +1,44 @@
+{
+    "projet":{
+        "projectSelect": "FURNITURE",
+        "amount": "10K",
+        "creditMaturity": "M60"
+    },
+    "identity":{
+        "gender" : "#GENDERCODE_M",
+        "maritalStatus" : "SINGLE", 
+        "lastName": "Toto" ,
+        "firstName": "Kiki", 
+        "dateOfBirthDay": "15", 
+        "dateOfBirthMouth": "08", 
+        "dateOfBirthYear": "1986", 
+        "address": "3 rue des tulipiers'", 
+        "postalCode": "33170", 
+        "city" : "3306333170", 
+        "countryZone" : "FR" , 
+        "email" : "toto@yopmail.com" , 
+        "cellPhoneNumber" : "0651736111", 
+        "phoneNumber" : "0551736112", 
+        "childNumber" : "0",
+        "insurance_subscribers" : "YES" 
+    }, 
+    "activité":{
+        "activitySector" : "INDEPENDENT", 
+        "profession" : "CRAFTSMAN", 
+        "businessActivityStartDateMouth" : "5", 
+        "businessActivityStartDateYear" : "1800", 
+        "mainIncome" : "2500" 
+    },
+    "logement":{
+        "housingStatus" : "TENANT", 
+        "housingStatusMouth" : "12",
+        "housingStatusYear" : "2010", 
+        "housingAssistance" : "300", 
+        "additionalIncome" : "0", 
+        "rentAmount" : "600",
+        "loanCount" : "1",
+        "loanAmount" : "450", 
+        "type" : "REFURBISHMENT_WORKS"  
+    }
+    
+}

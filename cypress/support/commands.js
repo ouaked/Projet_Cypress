@@ -1,25 +1,37 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add("login", (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add("drag", { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add("dismiss", { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+Cypress.Commands.add("choix_user", (projet) => {
+    cy.get('#projectSelect')
+            .select(projet.projectSelect)
+        cy.get('#amount')
+            .select(projet.amount)
+        cy.get('#creditMaturity')
+            .select(projet.creditMaturity)
+})
+Cypress.Commands.add('buttonClick', (label) => {
+    cy.contains(label).click()
+})
+
+Cypress.Commands.add('urlWebSite', (urlLog )=>{
+    cy.url().should('include', urlLog )
+})
+
+Cypress.Commands.add('pageTitle', (pageTitle )=>{
+    cy.get('title')
+            .should('contain',pageTitle)
+})
+
+Cypress.Commands.add("emailUser", (identity) => {
+    cy.get('#email-input')
+        .type(identity.email)
+        .should('have.value',identity.email)
+})
+
+Cypress.Commands.add("situation_familiale_user", (identity) => {
+    cy.get('#maritalStatus-input').select(identity.maritalStatus).should('have.class', 'ng-valid')
+    cy.get('#childNumberPropal-input').select(identity.childNumber).should('have.class', 'ng-valid')
+})
+
+Cypress.Commands.add("situation_user", (logement) => {
+    cy.get('#housingStatus-input').select(logement.housingStatus)
+    cy.get('#housingStatusFrom-input-month').type(logement.housingStatusMouth)
+    cy.get('#housingStatusFrom-input-year').type(logement.housingStatusYear)
+})

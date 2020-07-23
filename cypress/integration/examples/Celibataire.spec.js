@@ -1,5 +1,42 @@
 describe(' titre ', () => {
-    before(() => {
+
+    let celib = require('/Users/ouaks/Cypress/Projet_younited_credit/cypress/fixtures/Profil_celibataire')
+    
+    before("site internet", () => {
+        cy.visit('https://www.younited-credit.com')
+        cy.urlWebSite('younited-credit')
+        cy.pageTitle( 'Le Crédit 100% en Ligne – Réponse en 24h | Younited Credit')
+    })
+    it("page d'accueil", () =>{
+        cy.choix_user(celib.projet)
+        cy.buttonClick('CONTINUER')
+    })
+
+    it('Email', () =>{
+        cy.urlWebSite('/email')
+        cy.pageTitle('Younited Credit')
+       // cy.wait(3000)
+        cy.emailUser(celib.identity)
+        cy.get('div').should('have.class', 'wrapper-input input-wrapper--valid')
+        cy.buttonClick('Voir mon offre personnalisée')
+    })
+    it('Situation familiale', () =>{
+        cy.urlWebSite('/familysituation')
+        cy.pageTitle('Younited Credit')
+        cy.situation_familiale_user(celib.identity)
+        cy.get('[type="checkbox"]')
+            .uncheck({force:true}) 
+        cy.buttonClick('Suite')
+    })
+    it('logement', () =>{
+        cy.urlWebSite('/housing')
+        cy.pageTitle('Younited Credit')
+        cy.situation_user(celib.logement)
+        cy.get('[type="checkbox"]').uncheck({force:true}) 
+        cy.buttonClick('Suite')
+    })
+    
+   /* before(() => {
         cy.visit('https://www.younited-credit.com')
         cy.get('#projectSelect').select('FURNITURE').should('contain','')
         cy.get('#amount').select('10K')
@@ -9,7 +46,7 @@ describe(' titre ', () => {
         cy.get('#email-input').type('toto@yopmail.com').should('have.value', 'toto@yopmail.com')
         cy.contains('Voir mon offre personnalisée').click()
         cy.url().should('contain', '/familysituation')
-    })
+   
     it('Situation familliale : Célibataire', () => {
         cy.get('#maritalStatus-input').select('SINGLE')
         cy.get('#childNumberPropal-input').select('0')
@@ -79,4 +116,5 @@ describe(' titre ', () => {
 
         //cy.contains('Obtenir votre financement en 1 clic').click() 
     }) 
+     })*/
 })
