@@ -14,7 +14,7 @@
         "dateOfBirthYear": "1986", 
         "address": "3 rue des tulipiers'", 
         "postalCode": "33170", 
-        "city" : "3306333170", 
+        "city" : "3319233170", 
         "countryZone" : "FR" , 
         "email" : "toto@yopmail.com" , 
         "cellPhoneNumber" : "0651736111", 
@@ -22,11 +22,11 @@
         "childNumber" : "0",
         "insurance_subscribers" : "YES" 
     }, 
-    "activité":{
+    "activity":{
         "activitySector" : "INDEPENDENT", 
         "profession" : "CRAFTSMAN", 
         "businessActivityStartDateMouth" : "5", 
-        "businessActivityStartDateYear" : "1800", 
+        "businessActivityStartDateYear" : "2000", 
         "mainIncome" : "2500" 
     },
     "logement":{
@@ -39,6 +39,27 @@
         "loanCount" : "1",
         "loanAmount" : "450", 
         "type" : "REFURBISHMENT_WORKS"  
+    },
+
+    "banque":{
+        "bankCode" : "SOCIETE_GENERALE", 
+        "bankFromYear" : "1998" 
+    },
+    "activityStatus":{
+        "isIndependent":true,
+        "isSalarie":false,
+        "isRetired":false
+    },
+    "situation_logement":{
+        "isOwner":false,
+        "isTenant":true, 
+        "isOwnerWithCredit":false,
+        "isParent":false,
+        "haveOtherLoan":true
+    },
+    "mariedStatus":{
+        "isMariedOrPaced":false
     }
+   
     
 }

@@ -1,10 +1,17 @@
-describe(' titre ', () => {
+
+/*describe(' Tests Marié ', () => {
     before(() => {
         cy.visit('https://www.younited-credit.com')
+       
+    })
+
+    it('Projet', () => {
         cy.get('#projectSelect').select('FURNITURE').should('contain','')
         cy.get('#amount').select('10K')
         cy.get('#creditMaturity').select('M6')
         cy.contains('CONTINUER').click()
+    })
+    it('Email', () => {
         cy.url().should('contain', '/email')
         cy.get('#email-input').type('cici@yopmail.com').should('have.value', 'cici@yopmail.com')
         cy.contains('Voir mon offre personnalisée').click()
@@ -97,15 +104,104 @@ describe(' titre ', () => {
         cy.get('#countryZone-input').select('FR').should('contain','France')
         cy.contains('Suite').click() 
     })
-    it('Assurance', () => {
-       // cy.url().should('contain','/contact')
-        cy.get('#insurance-subscribers-input').select('YES_YES').should('contain','Pour mon co-emprunteur et moi')
-        cy.get('#INSURANCE-JOBLOSS_YES').check({force:true})
-        cy.contains('Suite').click() 
+    
+})*/
+
+
+//Verssion avec commande 
+
+describe('Maried credit tests', () =>{
+    let marier = require('../../fixtures/Profil_marier')
+    before('site internet', () =>{
+        cy.visit('https://www.younited-credit.com/')
+        cy.url().should('include', 'younited-credit')
+        cy.get('title').should('contain', 'Le Crédit 100% en Ligne')
     })
-    it('Autres offres', () => {
-        // cy.url().should('contain','/contact')
-         cy.get('#commercialOffer4').check({force:true})
-         cy.contains('Suite').click() 
-     })
+    it("page d'accueil", () =>{
+        cy.choix_user(marier.projet)
+        cy.buttonClick('CONTINUER')
+    })
+    it('Email', () =>{
+        cy.urlWebSite('/email')
+        cy.pageTitle('Younited Credit')
+        cy.wait(3000)
+        cy.emailUser(marier.identity)
+        cy.get('div').should('have.class', 'wrapper-input input-wrapper--valid')
+        cy.buttonClick('Voir mon offre personnalisée')
+    })
+    it('Situation familiale', () =>{
+        cy.urlWebSite('/familysituation')
+        cy.pageTitle('Younited Credit')
+        cy.situation_familiale_user(marier.identity)
+        cy.get('[type="checkbox"]')
+            .uncheck({force:true}) 
+        cy.buttonClick('Suite')
+    })
+    it('logement', () =>{
+        cy.urlWebSite('/housing')
+        cy.pageTitle('Younited Credit')
+        cy.situation_user(marier.logement)
+        cy.get('[type="checkbox"]').uncheck({force:true}) 
+        cy.buttonClick('Suite')
+    })
+    it('Situation profetionnelle', () =>{
+        cy.urlWebSite('/professionalsituation')
+        cy.pageTitle('Younited Credit')
+        cy.activityCeliba(marier.activityStatus, marier.activity)
+        cy.get('#ISCOMPANYBANKRUPT_FALSE')
+            .check({ force: true })
+            .should('be.checked')
+        cy.buttonClick('Suite')
+    })
+    if(marier.identity.maritalStatus != "SINGLE"){
+        it("secteur d'activité du partenaire", () =>{
+            cy.urlWebSite('/partnerprofession')
+            cy.pageTitle('Younited Credit')
+            cy.activite_conjoint_user(marier.activityStatus_partenaire, marier.activity_partenaire)
+            cy.buttonClick('Suite')
+        })
+       /* it('identity du partenaire', () =>{
+            cy.urlWebSite('/partneridentity')
+            cy.pageTitle('Younited Credit')
+            cy.identity_Partner(marier.partnerStatus, marier.identity_partenaire)
+            cy.buttonClick('Suite')
+        })*/
+    }
+    it('Revenu', () =>{
+        cy.urlWebSite('/incomes')
+        cy.pageTitle('Younited Credit')
+        cy.revenu_user(marier.mariedStatus, marier.activity, marier.logement, marier.activity_partenaire)
+        cy.buttonClick('Suite')
+    })
+    it('loyer', () =>{
+        cy.urlWebSite('/outcomes')
+        cy.pageTitle('Younited Credit')
+        cy.wait(3000)
+        cy.loyer_User(marier.situation_logement, marier.logement)
+        cy.buttonClick('Suite')
+    })
+    it('Banque maried', () =>{
+        cy.urlWebSite('/bank')
+        cy.pageTitle('Younited Credit')
+        cy.banque_user(marier.banque)
+        cy.buttonClick('Suite')
+    })
+    it('Identité user', () =>{
+        cy.urlWebSite('/identity')
+        cy.pageTitle('Younited Credit')
+        cy.identity_User_Celib(marier.identity)
+        cy.buttonClick('Suite')
+    })
+    it('identity du partenaire', () =>{
+        cy.urlWebSite('/partneridentity')
+        cy.pageTitle('Younited Credit')
+        cy.identity_Partner(marier.partnerStatus, marier.identity_partenaire)
+        cy.buttonClick('Suite')
+    })
+    it('Contact', () =>{
+        cy.urlWebSite('/contact')
+        cy.pageTitle('Younited Credit')
+        cy.contact( marier.identity)
+        cy.buttonClick('Suite')
+    })
 })

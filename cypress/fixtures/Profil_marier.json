@@ -1,0 +1,91 @@
+{
+    "projet":{
+        "projectSelect": "APPLIANCES",
+        "amount": "6K",
+        "creditMaturity": "M12"
+    },
+    "identity":{
+        "gender" : "#GENDERCODE_M",
+        "maritalStatus" : "MARRIED", 
+        "lastName": "Toctoc" ,
+        "firstName": "Brayan", 
+        "dateOfBirthDay": "20", 
+        "dateOfBirthMouth": "8", 
+        "dateOfBirthYear": "1978", 
+        "address": "Avenue des roses'", 
+        "postalCode": "33000", 
+        "city" : "3306333000", 
+        "countryZone" : "FR" , 
+        "email" : "b.toctoc@yopmail.com" , 
+        "cellPhoneNumber" : "0684596232", 
+        "phoneNumber" : "0585652503",
+        "childNumber" : "0", 
+        "insurance_subscribers" : "YES_YES" 
+    },
+    "identity_partenaire":{
+        "partnerGender" :"#GENDERCODE_MME",
+        "partnerLastName": "Toctoc",
+        "partnerMaidenName": "Cici",
+        "partnerFirstName": "Maria",
+        "partnerDateOfBirthDay": "10",
+        "partnerDateOfBirthMouth": "12",
+        "partnerDateOfBirthYear": "1982",
+        "partnerPostalCode" :"33000",
+        "partnerCity" :"3306333000"
+    },
+    "activity":{
+        "activitySector" : "PRIVATE_SECTOR", 
+        "profession" : "ENGINEER", 
+        "contractType" : "CDI",
+        "employedFromMouth" : "5", 
+        "employedFromYear" : "2003",
+        "mainIncome" : "2000" 
+    },
+    "activity_partenaire":{
+        "partnerActivitySector": "FARMING_SECTOR",
+        "partnerProfession": "FARM_WORKER",
+        "partnerContractType" : "CDD",
+        "partnerEmployedFromMouth" : "8",
+        "partnerEmployedFromYear" : "2018",
+        "coIncome" : "1500"
+    },
+    "logement":{
+        "housingStatus" : "HOME_OWNERSHIP_WITH_MORTGAGE", 
+        "housingStatusMouth" : "10",
+        "housingStatusYear" : "2009",
+        "housingAssistance" : "0", 
+        "additionalIncome" : "600", 
+        "mortgageAmount" : "200",
+        "childSupportPaymentsAmount" : "0",
+        "childCareExpensesAmount" : "600",
+        "loanCount" : "0" 
+    },
+    "banque":{
+        "bankCode" : "CREDIT_MUTUEL", 
+        "bankFromYear" : "2000" 
+    },
+    "activityStatus":{
+        "isIndependent":false,
+        "isSalarie":true,
+        "isRetired":false
+    },
+    "activityStatus_partenaire":{
+        "isMariedOrPaced":true,
+        "isSalarie":true, 
+        "isRetired":false
+    },
+    "situation_logement":{
+        "isOwner":false,
+        "isTenant":false, 
+        "isOwnerWithCredit":true,
+        "isParent":false,
+        "haveOtherLoan":true
+    },
+    "mariedStatus":{
+        "isMariedOrPaced":true
+    },
+    "partnerStatus":{
+        "isPartner":true,
+        "isMaried": true
+    }
+}

@@ -9,15 +9,17 @@ describe(' titre ', () => {
     })
     it("page d'accueil", () =>{
         cy.choix_user(celib.projet)
+        cy.wait(5000)
         cy.buttonClick('CONTINUER')
     })
 
     it('Email', () =>{
         cy.urlWebSite('/email')
         cy.pageTitle('Younited Credit')
-       // cy.wait(3000)
+        cy.wait(3000)
         cy.emailUser(celib.identity)
         cy.get('div').should('have.class', 'wrapper-input input-wrapper--valid')
+        cy.wait(5000)
         cy.buttonClick('Voir mon offre personnalisée')
     })
     it('Situation familiale', () =>{
@@ -35,7 +37,66 @@ describe(' titre ', () => {
         cy.get('[type="checkbox"]').uncheck({force:true}) 
         cy.buttonClick('Suite')
     })
-    
+    it('Situation profetionnelle', () =>{
+        cy.urlWebSite('/professionalsituation')
+        cy.pageTitle('Younited Credit')
+        cy.activityCeliba(celib.activityStatus, celib.activity)
+        cy.get('#ISCOMPANYBANKRUPT_FALSE')
+            .check({ force: true })
+            .should('be.checked')
+        cy.buttonClick('Suite')
+    })
+    if(celib.identity.maritalStatus != "SINGLE"){
+        it('Activité du conjoint', () =>{
+            cy.urlWebSite('/partnerprofession')
+            cy.pageTitle('Younited Credit')
+            cy.activite_conjoint_user(celib.partnerActivityStatus, celib.partnerActivity)
+            cy.buttonClick('Suite')
+            
+        })
+        it('Identité du conjoint', () =>{
+            cy.urlWebSite('/partneridentity')
+            cy.pageTitle('Younited Credit')
+            cy.identityPartnerUser(celib.partnerStatus, celib.partnerIdentity)
+            cy.buttonClick('Suite')
+        })
+    }
+    it('Revenu', () =>{
+        cy.urlWebSite('/incomes')
+        cy.pageTitle('Younited Credit')
+        cy.revenu_user(celib.mariedStatus, celib.activity, celib.logement, celib.partnerActivity)
+        cy.buttonClick('Suite')
+    })
+
+    it('loyer', () =>{
+        cy.urlWebSite('/outcomes')
+        cy.pageTitle('Younited Credit')
+        cy.loyer_User(celib.situation_logement, celib.logement)
+        cy.buttonClick('Suite')
+    })
+    it('Banque celibataire', () =>{
+        cy.urlWebSite('/bank')
+        cy.pageTitle('Younited Credit')
+        cy.banque_user(celib.banque)
+        cy.buttonClick('Suite')
+    })
+   
+    it('Identité user celibataire', () =>{
+        cy.urlWebSite('/identity')
+        cy.pageTitle('Younited Credit')
+        cy.identity_User_Celib(celib.identity)
+        cy.buttonClick('Suite')
+    })
+     
+    it('Contact', () =>{
+        cy.urlWebSite('/contact')
+        cy.pageTitle('Younited Credit')
+        cy.contact( celib.identity)
+        cy.buttonClick('Suite')
+    })
+  
+
+  
    /* before(() => {
         cy.visit('https://www.younited-credit.com')
         cy.get('#projectSelect').select('FURNITURE').should('contain','')
@@ -54,7 +115,7 @@ describe(' titre ', () => {
         cy.contains('Suite',{timeout: 3000}).click()
         cy.url().should('contain', '/housing')
     })
-        it('Logement : Locataire', () => {
+        it('logement : Locataire', () => {
         cy.get('#housingStatus-input').select('TENANT')
         cy.get('#housingStatusFrom-input-month').type('01').should('have.value', '01')
         cy.get('#housingStatusFrom-input-year').type('2020').should('have.value', '2020')
